@@ -1,3 +1,9 @@
+function getPlayerChoice()
+{
+    let playerChoice = prompt("Choose from Rock, Paper, Scissors");
+    return playerChoice.toLowerCase();
+}
+
 function getComputerChoice()
 {
     let randomChoice = Math.floor(Math.random() * 3)+1;
@@ -29,6 +35,6 @@ function playRound(playerSelection, computerSelection)
 
 for (let i = 0; i < 5; i++)
 {
-    console.log(playRound("rock", getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
 }
 
