@@ -6,8 +6,29 @@ function getComputerChoice()
     if (randomChoice == 3) return "scissors";
 }
 
-for (let i = 0; i < 10; i++)
+function playRound(playerSelection, computerSelection)
 {
-    console.log(getComputerChoice());
+    if (playerSelection == computerSelection) return "tie";
+
+    if (playerSelection == "rock")
+    {
+        if (computerSelection == "scissors") return "You Win! Rock beats Scissors";
+        else if (computerSelection == "paper") return "You Lose! Paper beats Rock"
+    }
+    else if (playerSelection == "paper")
+    {
+        if (computerSelection == "rock") return "You Win! Paper beats Rock";
+        else if (computerSelection == "scissors") return "You Lose! Scissors beats Paper"
+    }
+    else if (playerSelection == "scissors")
+    {
+        if (computerSelection == "paper") return "You Win! Scissors beats Paper";
+        else if (computerSelection == "rock") return "You Lose! Rock beats Scissors"
+    }
+}
+
+for (let i = 0; i < 5; i++)
+{
+    console.log(playRound("rock", getComputerChoice()));
 }
 
