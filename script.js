@@ -18,23 +18,85 @@ function playRound(playerSelection, computerSelection)
 
     if (playerSelection == "rock")
     {
-        if (computerSelection == "scissors") return "You Win! Rock beats Scissors";
-        else if (computerSelection == "paper") return "You Lose! Paper beats Rock"
+        if (computerSelection == "scissors") return "win";
+        else if (computerSelection == "paper") return "lose";
     }
     else if (playerSelection == "paper")
     {
-        if (computerSelection == "rock") return "You Win! Paper beats Rock";
-        else if (computerSelection == "scissors") return "You Lose! Scissors beats Paper"
+        if (computerSelection == "rock") return "win";
+        else if (computerSelection == "scissors") return "lose";
     }
     else if (playerSelection == "scissors")
     {
-        if (computerSelection == "paper") return "You Win! Scissors beats Paper";
-        else if (computerSelection == "rock") return "You Lose! Rock beats Scissors"
+        if (computerSelection == "paper") return "win";
+        else if (computerSelection == "rock") return "lose";
     }
 }
 
-for (let i = 0; i < 5; i++)
+function displayResult(result, playerSelection, computerSelection)
 {
-    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    if (result == "win")
+    {
+        return `You ${result}! ${playerSelection} beats ${computerSelection}`;
+    }
+    else if (result == "lose")
+    {
+        return `You ${result}! ${computerSelection} beats ${playerSelection}`;
+    }
+    else
+    {
+        return `${result}!`;
+    }
 }
+
+let playerTotalScore = 0;
+let computerTotalScore = 0;
+
+function updateScore(result)
+{
+    if (result == "win")
+    {
+        playerTotalScore += 1;
+    }
+    else
+    {
+        computerTotalScore += 1;
+    }
+}
+
+function showWinner(playerTotalScore,computerTotalScore)
+{
+    if (playerTotalScore > computerTotalScore)
+    {
+        return `You Win! Final Score ${playerTotalScore} : ${computerTotalScore}`;
+    }
+    else if (playerTotalScore < computerTotalScore)
+    {
+        return `You Lose! Final Score ${playerTotalScore} : ${computerTotalScore}`;
+    }
+    else
+    {
+        return `Tie! Final Score ${playerTotalScore} : ${computerTotalScore}`;
+    }
+}
+
+
+
+function game()
+{
+    let result = "";
+    
+    for (let i = 0; i < 5; i++)
+    {
+        let playerSelection = getPlayerChoice();
+        let computerSelection = getComputerChoice();
+        result = playRound(playerSelection,computerSelection);
+        console.log(displayResult(result,playerSelection, computerSelection));
+        updateScore(result,playerTotalScore,computerTotalScore);
+    }
+
+    console.log(showWinner(playerTotalScore, computerTotalScore));
+}   
+
+game();
 
