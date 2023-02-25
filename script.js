@@ -1,8 +1,3 @@
-function getPlayerChoice() {
-    let playerChoice = prompt("Choose from Rock, Paper, Scissors");
-    return playerChoice.toLowerCase();
-}
-
 function getComputerChoice() {
     let randomChoice = Math.floor(Math.random() * 3) + 1;
     if (randomChoice == 1) return "rock";
@@ -63,16 +58,16 @@ function showWinner(playerTotalScore, computerTotalScore) {
     }
 }
 
-
-
 function game() {
     const buttons = document.querySelectorAll('button');
     let roundPlayed = 0;
+    let result = "";
+
     buttons.forEach((button) => {
         button.addEventListener('click', function (e) {
-            let result = "";
             let playerChoice = this.value;
             playerChoice = playerChoice.toLowerCase();
+
             let computerSelection = getComputerChoice();
             result = playRound(playerChoice, computerSelection);
             updateScore(result, playerTotalScore, computerTotalScore);
@@ -80,6 +75,7 @@ function game() {
             document.getElementById("computerScore").textContent = computerTotalScore;
             console.log(displayResult(result, playerChoice, computerSelection));
             roundPlayed += 1;
+            
             if (roundPlayed == 5)
             {
                 document.getElementById("finalResult").textContent = showWinner(playerTotalScore, computerTotalScore);    
@@ -89,7 +85,6 @@ function game() {
             }
         })
     });
-    
 }
 
 game();
