@@ -1,50 +1,40 @@
-function getPlayerChoice()
-{
+function getPlayerChoice() {
     let playerChoice = prompt("Choose from Rock, Paper, Scissors");
     return playerChoice.toLowerCase();
 }
 
-function getComputerChoice()
-{
-    let randomChoice = Math.floor(Math.random() * 3)+1;
+function getComputerChoice() {
+    let randomChoice = Math.floor(Math.random() * 3) + 1;
     if (randomChoice == 1) return "rock";
     if (randomChoice == 2) return "paper";
     if (randomChoice == 3) return "scissors";
 }
 
-function playRound(playerSelection, computerSelection)
-{
+function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) return "tie";
 
-    if (playerSelection == "rock")
-    {
+    if (playerSelection == "rock") {
         if (computerSelection == "scissors") return "win";
         else if (computerSelection == "paper") return "lose";
     }
-    else if (playerSelection == "paper")
-    {
+    else if (playerSelection == "paper") {
         if (computerSelection == "rock") return "win";
         else if (computerSelection == "scissors") return "lose";
     }
-    else if (playerSelection == "scissors")
-    {
+    else if (playerSelection == "scissors") {
         if (computerSelection == "paper") return "win";
         else if (computerSelection == "rock") return "lose";
     }
 }
 
-function displayResult(result, playerSelection, computerSelection)
-{
-    if (result == "win")
-    {
+function displayResult(result, playerSelection, computerSelection) {
+    if (result == "win") {
         return `You ${result}! ${playerSelection} beats ${computerSelection}`;
     }
-    else if (result == "lose")
-    {
+    else if (result == "lose") {
         return `You ${result}! ${computerSelection} beats ${playerSelection}`;
     }
-    else
-    {
+    else {
         return `${result}!`;
     }
 }
@@ -52,51 +42,63 @@ function displayResult(result, playerSelection, computerSelection)
 let playerTotalScore = 0;
 let computerTotalScore = 0;
 
-function updateScore(result)
-{
-    if (result == "win")
-    {
+function updateScore(result) {
+    if (result == "win") {
         playerTotalScore += 1;
     }
-    else
-    {
+    else {
         computerTotalScore += 1;
     }
 }
 
-function showWinner(playerTotalScore,computerTotalScore)
-{
-    if (playerTotalScore > computerTotalScore)
-    {
+function showWinner(playerTotalScore, computerTotalScore) {
+    if (playerTotalScore > computerTotalScore) {
         return `You Win! Final Score ${playerTotalScore} : ${computerTotalScore}`;
     }
-    else if (playerTotalScore < computerTotalScore)
-    {
+    else if (playerTotalScore < computerTotalScore) {
         return `You Lose! Final Score ${playerTotalScore} : ${computerTotalScore}`;
     }
-    else
-    {
+    else {
         return `Tie! Final Score ${playerTotalScore} : ${computerTotalScore}`;
     }
 }
 
 
 
-function game()
-{
-    let result = "";
-    
-    for (let i = 0; i < 5; i++)
-    {
-        let playerSelection = getPlayerChoice();
-        let computerSelection = getComputerChoice();
-        result = playRound(playerSelection,computerSelection);
-        console.log(displayResult(result,playerSelection, computerSelection));
-        updateScore(result,playerTotalScore,computerTotalScore);
-    }
+function game() {
+    // let result = "";
 
-    console.log(showWinner(playerTotalScore, computerTotalScore));
-}   
+    // let playerSelection = getPlayerChoice();
+    // let computerSelection = getComputerChoice();
+    // result = playRound(playerSelection,computerSelection);
+    // console.log(displayResult(result,playerSelection, computerSelection));
+    // updateScore(result,playerTotalScore,computerTotalScore);
+
+    // console.log(showWinner(playerTotalScore, computerTotalScore));
+}
 
 game();
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((buttons) => {
+    buttons.addEventListener('click',function (e){
+        console.log(this.value);
+    })
+});
+
+// const rockBtn = document.querySelector('#rockBtn');
+// rockBtn.addEventListener('click', function (e) {
+//     console.log(this.value);
+// });
+
+// const paperBtn = document.querySelector('#paperBtn');
+// paperBtn.addEventListener('click', function (e) {
+//     console.log(this.value);
+// });
+
+// const scissorsBtn = document.querySelector('#scissorsBtn');
+// scissorsBtn.addEventListener('click', function (e) {
+//     console.log(this.value);
+// });
 
