@@ -82,23 +82,13 @@ game();
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach((buttons) => {
-    buttons.addEventListener('click',function (e){
-        console.log(this.value);
+    buttons.addEventListener('click', function (e) {
+        let result = "";
+        let playerChoice = this.value;
+        playerChoice = playerChoice.toLowerCase();
+        let computerSelection = getComputerChoice();
+        result = playRound(playerChoice, computerSelection);
+        updateScore(result, playerTotalScore, computerTotalScore);
+        console.log(displayResult(result, playerChoice, computerSelection));
     })
 });
-
-// const rockBtn = document.querySelector('#rockBtn');
-// rockBtn.addEventListener('click', function (e) {
-//     console.log(this.value);
-// });
-
-// const paperBtn = document.querySelector('#paperBtn');
-// paperBtn.addEventListener('click', function (e) {
-//     console.log(this.value);
-// });
-
-// const scissorsBtn = document.querySelector('#scissorsBtn');
-// scissorsBtn.addEventListener('click', function (e) {
-//     console.log(this.value);
-// });
-
