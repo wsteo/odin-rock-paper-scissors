@@ -22,7 +22,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function displayResult(result, playerSelection, computerSelection) {
+function displayRoundResult(result, playerSelection, computerSelection) {
     if (result == "win") {
         return `You ${result}! ${playerSelection} beats ${computerSelection}`;
     }
@@ -67,15 +67,20 @@ function game() {
         button.addEventListener('click', function (e) {
             let playerChoice = this.value;
             playerChoice = playerChoice.toLowerCase();
-
             let computerSelection = getComputerChoice();
+
+            document.getElementById("playerSelection").textContent = playerChoice;
+            document.getElementById("computerSelection").textContent = computerSelection;
+
             result = playRound(playerChoice, computerSelection);
             updateScore(result, playerTotalScore, computerTotalScore);
+
             document.getElementById("playerScore").textContent = playerTotalScore;
             document.getElementById("computerScore").textContent = computerTotalScore;
-            console.log(displayResult(result, playerChoice, computerSelection));
+            document.getElementById("roundResult").textContent = displayRoundResult(result, playerChoice, computerSelection);
+
             roundPlayed += 1;
-            
+
             if (roundPlayed == 5)
             {
                 document.getElementById("finalResult").textContent = showWinner(playerTotalScore, computerTotalScore);    
