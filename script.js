@@ -66,29 +66,30 @@ function showWinner(playerTotalScore, computerTotalScore) {
 
 
 function game() {
-    // let result = "";
-
-    // let playerSelection = getPlayerChoice();
-    // let computerSelection = getComputerChoice();
-    // result = playRound(playerSelection,computerSelection);
-    // console.log(displayResult(result,playerSelection, computerSelection));
-    // updateScore(result,playerTotalScore,computerTotalScore);
-
-    // console.log(showWinner(playerTotalScore, computerTotalScore));
+    const buttons = document.querySelectorAll('button');
+    let roundPlayed = 0;
+    buttons.forEach((button) => {
+        button.addEventListener('click', function (e) {
+            let result = "";
+            let playerChoice = this.value;
+            playerChoice = playerChoice.toLowerCase();
+            let computerSelection = getComputerChoice();
+            result = playRound(playerChoice, computerSelection);
+            updateScore(result, playerTotalScore, computerTotalScore);
+            document.getElementById("playerScore").textContent = playerTotalScore;
+            document.getElementById("computerScore").textContent = computerTotalScore;
+            console.log(displayResult(result, playerChoice, computerSelection));
+            roundPlayed += 1;
+            if (roundPlayed == 5)
+            {
+                document.getElementById("finalResult").textContent = showWinner(playerTotalScore, computerTotalScore);    
+                buttons.forEach((button) => {
+                    button.disabled = true;
+                });
+            }
+        })
+    });
+    
 }
 
 game();
-
-const buttons = document.querySelectorAll('button');
-
-buttons.forEach((buttons) => {
-    buttons.addEventListener('click', function (e) {
-        let result = "";
-        let playerChoice = this.value;
-        playerChoice = playerChoice.toLowerCase();
-        let computerSelection = getComputerChoice();
-        result = playRound(playerChoice, computerSelection);
-        updateScore(result, playerTotalScore, computerTotalScore);
-        console.log(displayResult(result, playerChoice, computerSelection));
-    })
-});
